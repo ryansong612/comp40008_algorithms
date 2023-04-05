@@ -22,7 +22,7 @@ class Graph:
                 self.parent[y] = x
                 self.dfs(y)
         # backtrack to x
-        if self.parent[x] is not None:
+        if self.parent[x]:
             print(f"We backtrack to {self.parent[x]}")
 
     def bfs(self, x):
@@ -39,6 +39,20 @@ class Graph:
                     self.parent[z] = y
                     q.append(z)
             q.pop(0)
+
+    def cycleDFS(self, x):
+        self.visited[x] = True
+        print(x)
+        for y in self.adj(x):
+            if self.visited[y] and y != self.parent[x]:
+                # cycle found involving x and y
+                return x, y
+            if not self.visited[y]:
+                self.parent[y] = x
+                pair = self.cycleDFS(y)
+                if pair:
+                    return pair
+        return None
 
     def duplicate(self):
         return Graph(self.nodes, self.arcs)
