@@ -56,4 +56,3 @@ class Graph:
 
     def duplicate(self):
         return Graph(self.nodes, self.arcs)
-
