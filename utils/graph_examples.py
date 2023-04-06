@@ -1,5 +1,6 @@
 from utils.arc import Arc
 from utils.graph import Graph
+from utils.adjacency_matrix import AdjacencyMatrix
 
 
 # Remember duplicating graph before use
@@ -19,3 +20,11 @@ graph_2 = Graph(nodes_2, arcs_2)
 nodes_3 = [x for x in range(1, 3)]
 arcs_3 = [Arc(1, 2), Arc(2, 1)]
 graph_3 = Graph(nodes_3, arcs_3)
+
+# Example 4
+matrix_4 = AdjacencyMatrix([[0, 1, 0, 1, 0],
+                            [1, 0, 1, 0, 1],
+                            [0, 1, 0, 1, 0],
+                            [1, 0, 1, 0, 1],
+                            [0, 1, 0, 1, 0]])
+graph_4 = matrix_4.toGraph()

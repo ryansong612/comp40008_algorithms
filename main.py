@@ -30,5 +30,5 @@ if __name__ == "__main__":
     print("")
     detect_cycles_dfs(graph_2, 1)
     print("")
-    detect_cycles_dfs(graph_3, 1)
+    detect_cycles_dfs(graph_4, 1)
 
