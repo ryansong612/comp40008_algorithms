@@ -34,3 +34,16 @@ nodes_1_19 = [x for x in range(1, 8)]
 arcs_1_19 = [Arc(1, 2), Arc(6, 2), Arc(2, 7),
              Arc(2, 5), Arc(3, 4), Arc(4, 5)]
 graph_1_19 = Graph(nodes_1_19, arcs_1_19)
+
+# Figure 1.22
+matrix_1_22 = AdjacencyMatrix([[0, 1, 1, 1],
+                               [1, 0, 1, 0],
+                               [1, 1, 0, 1],
+                               [1, 0, 1, 0]])
+weights_1_22 = [[0, 3, 5, 4],
+                [3, 0, 4, 0],
+                [5, 4, 0, 2],
+                [4, 0, 2, 0]]
+graph_1_22 = matrix_1_22.toGraph()
+graph_1_22.set_weights(weights_1_22)
+

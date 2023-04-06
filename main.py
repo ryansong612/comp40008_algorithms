@@ -31,14 +31,23 @@ def run_topological_sort(graph):
     print("Topological sort complete")
 
 
+def prims_classic(graph, start):
+    print("Running Prim's Algorithm...")
+    mst = graph.duplicate().prim_MST_classic(start)
+    for arc in mst:
+        print(arc)
+    print("Process complete")
+
+
 if __name__ == "__main__":
-    start_bfs(graph_1, 1)
-    print("")
-    start_dfs(graph_1, 1)
-    print("")
-    detect_cycles_dfs(graph_2, 1)
-    print("")
-    detect_cycles_dfs(graph_4, 1)
-    print("")
-    run_topological_sort(graph_1_19)
+    # start_bfs(graph_1, 1)
+    # print("")
+    # start_dfs(graph_1, 1)
+    # print("")
+    # detect_cycles_dfs(graph_2, 1)
+    # print("")
+    # detect_cycles_dfs(graph_4, 1)
+    # print("")
+    # run_topological_sort(graph_1_19)
+    prims_classic(graph_1_22, 1)
 

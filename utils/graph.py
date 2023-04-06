@@ -1,15 +1,26 @@
+from utils.arc import Arc
+
+
 class Graph:
     def __init__(self, nodes, arcs):
         self.nodes = nodes
         self.arcs = arcs
+        self.weights = []
         self.visited = {node: False for node in self.nodes}
         self.parent = {node: None for node in self.nodes}
 
+        # topological sort
         self.n = len(self.nodes)
         self.ts = [0] * self.n
         self.index = 0
         self.entered = {node: False for node in self.nodes}
         self.exited = {node: False for node in self.nodes}
+
+        # MST algorithms
+        self.tree = {node: False for node in self.nodes}
+
+    def set_weights(self, new_weights):
+        self.weights = new_weights
 
     def adj(self, x):
         adjacent_nodes = []
@@ -106,5 +117,53 @@ class Graph:
         self.index -= 1
         return
 
+    def weigh(self, x, y):
+        return self.weights[x - 1][y - 1]
+
+    def empty_fringe(self, fringe):
+        for f in fringe:
+            if fringe[f]:
+                return False
+        return True
+
+    def prim_MST_classic(self, start):
+        fringe = {node: False for node in self.nodes}
+        weight = {node: 99999 for node in range(len(self.nodes) + 1)}
+        mst = []
+
+        self.tree[start] = True
+        for x in self.adj(start):
+            fringe[x] = True
+            self.parent[x] = start
+            weight[x] = self.weigh(start, x)
+
+        while not self.empty_fringe(fringe):
+            min_f = 0
+            for f in fringe:
+                if fringe[f]:
+                    if weight[f] < weight[min_f]:
+                        min_f = f
+            fringe[min_f] = False
+            self.tree[min_f] = True
+            mst.append(Arc(self.parent[min_f], min_f))
+            for y in self.adj(min_f):
+                if not self.tree[y]:
+                    if fringe[y]:
+                        # update candidate arc
+                        if self.weigh(min_f, y) < weight[y]:
+                            weight[y] = self.weigh(min_f, y)
+                            self.parent[y] = min_f
+                    else:
+                        # y is unseen
+                        fringe[y] = True
+                        weight[y] = self.weigh(min_f, y)
+                        self.parent[y] = min_f
+        return mst
+
     def duplicate(self):
-        return Graph(self.nodes, self.arcs)
+        if self.weights:
+            dup = Graph(self.nodes, self.arcs)
+            dup.set_weights(self.weights)
+            return dup
+        else:
+            return Graph(self.nodes, self.arcs)
