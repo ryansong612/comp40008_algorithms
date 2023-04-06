@@ -97,7 +97,7 @@ class Graph:
             if self.entered[y]:
                 if not self.exited[y]:
                     print("Cycle Found")
-                    return None
+                    return
             else:
                 self.parent[y] = x
                 self.dfs_topological_sort(y)
