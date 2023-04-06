@@ -1,7 +1,6 @@
+from utils.adjacency_matrix import AdjacencyMatrix
 from utils.arc import Arc
 from utils.graph import Graph
-from utils.adjacency_matrix import AdjacencyMatrix
-
 
 # Remember duplicating graph before use
 
@@ -28,3 +27,10 @@ matrix_4 = AdjacencyMatrix([[0, 1, 0, 1, 0],
                             [1, 0, 1, 0, 1],
                             [0, 1, 0, 1, 0]])
 graph_4 = matrix_4.toGraph()
+
+
+# Figure 1.19
+nodes_1_19 = [x for x in range(1, 8)]
+arcs_1_19 = [Arc(1, 2), Arc(6, 2), Arc(2, 7),
+             Arc(2, 5), Arc(3, 4), Arc(4, 5)]
+graph_1_19 = Graph(nodes_1_19, arcs_1_19)

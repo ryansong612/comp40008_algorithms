@@ -8,4 +8,3 @@ class Arc:
 
     def set_end(self, new_end):
         self.end = new_end
-
